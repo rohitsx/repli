@@ -3,6 +3,11 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-whatsapp: #1da851;
+  --color-whatsapp-h: #21be5b;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
