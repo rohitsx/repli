@@ -6,18 +6,9 @@ import {
 	NavigationMenuList,
 } from "@/components/ui/navigation-menu";
 import { RepliLogo } from "./logo";
-import {
-	SignInButton,
-	SignedIn,
-	SignedOut,
-	UserButton,
-	useUser,
-} from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 
 export const PriceNavBar = () => {
-	const { user } = useUser();
-
 	// Simulate subscription info
 	const [subscriptionStatus, setSubscriptionStatus] = useState<
 		"active" | "expiring" | "none"
@@ -65,20 +56,9 @@ export const PriceNavBar = () => {
 
 				<NavigationMenu>
 					<NavigationMenuList className="flex items-center gap-4 md:gap-6 text-sm font-medium">
-						{/* Subscription Status */}
-						<SignedIn>{getStatusUI()}</SignedIn>
-
-						{/* Auth buttons */}
-						<SignedOut>
-							<SignInButton>
-								<button className="cursor-pointer bg-whatsapp hover:bg-whatsapp-h text-white p-2 px-4 rounded-lg transition-colors duration-300 text-sm">
-									Try now
-								</button>
-							</SignInButton>
-						</SignedOut>
-						<SignedIn>
-							<UserButton />
-						</SignedIn>
+						<button className="cursor-pointer bg-whatsapp hover:bg-whatsapp-h text-white p-2 px-4 rounded-lg transition-colors duration-300 text-sm">
+							Try now
+						</button>
 					</NavigationMenuList>
 				</NavigationMenu>
 			</nav>

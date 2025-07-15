@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { GetStartedBtn } from "./getStartedBtn";
 
 export const Hero = () => {
   return (
@@ -13,11 +13,7 @@ export const Hero = () => {
           to WhatsApp
         </p>
       </div>
-
-      <button className="flex items-center gap-2 cursor-pointer bg-whatsapp hover:bg-whatsapp-h text-white p-2 px-6 md:px-8 md:py-4 rounded-lg transition-colors duration-300">
-        Get Started
-        <ArrowRight size={18} />
-      </button>
+      <GetStartedBtn />
     </div>
   );
 };
