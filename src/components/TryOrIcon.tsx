@@ -89,6 +89,7 @@ const Icon = ({
   email: string;
 }) => {
   const router = useRouter();
+  const clearSession = useSessionStore((state) => state.clearSession);
 
   const handleLogout = async () => {
     await authClient.signOut({
@@ -98,6 +99,8 @@ const Icon = ({
         },
       },
     });
+
+    clearSession();
   };
 
   return (

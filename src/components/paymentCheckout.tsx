@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { GetStartedBtn } from "./getStartedBtn";
 
 export const PaymentCheckout = () => {
   const features = [
@@ -44,9 +45,7 @@ export const PaymentCheckout = () => {
       </CardContent>
 
       <CardFooter className="text-center flex-col space-y-2">
-        <button className="w-full text-center cursor-pointer bg-whatsapp hover:bg-whatsapp-h text-white p-2 px-6 md:px-8 md:py-4 rounded-lg transition-colors duration-300">
-          Get Started
-        </button>
+        <GetStartedBtn />
         <p className="text-sm text-muted-foreground">
           Early users get exclusive discounts before price increases
         </p>

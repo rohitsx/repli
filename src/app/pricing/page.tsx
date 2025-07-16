@@ -1,7 +1,6 @@
 import { NavBar } from "@/components/navbar";
 import { PaymentCheckout } from "@/components/paymentCheckout";
-import { Button } from "@/components/ui/button";
-import { ArrowLeft, SkipBack } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export default function Page() {
   return (
