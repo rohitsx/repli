@@ -1,6 +1,7 @@
 import { Footer } from "@/components/footer";
 import { Hero } from "@/components/hero";
 import { NavBar } from "@/components/navbar";
+import { SessionProvider } from "@/lib/session";
 
 export default async function Home() {
   return (

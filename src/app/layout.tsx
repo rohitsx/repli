@@ -3,6 +3,9 @@ import { Manrope } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import React from "react";
 import "./globals.css";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { SessionProvider } from "@/lib/session";
 
 const manrope = Manrope({
   subsets: ["latin"],
