@@ -79,6 +79,7 @@ export const TryNow = ({
     </Dialog>
   );
 };
+
 const Icon = ({
   img,
   fallback,
@@ -108,7 +109,9 @@ const Icon = ({
       <DropdownMenuTrigger>
         <Avatar className="cursor-pointer">
           <AvatarImage src={img} />
-          <AvatarFallback>{fallback}</AvatarFallback>
+          <AvatarFallback className="bg-whatsapp text-white">
+            {fallback}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>

@@ -11,11 +11,23 @@ import {
 import { Button } from "./ui/button";
 import { GmailIcon } from "./logo";
 import { PhoneInput } from "./ui/phone-input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 export const GmailAuth = () => {
   const [phone, setPhone] = useState<string>("");
+  const [authUrl, setAuthUrl] = useState<string>("");
+
+  const handleLogin = async () => {
+    const response = await fetch("/api/auth/gmail/auth");
+    const data = await response.json();
+    setAuthUrl(data);
+  };
+
+  useEffect(() => {
+    handleLogin();
+  }, []);
+
   return (
     <Card className="h-full text-left md:w-1/2 md:h-115">
       <CardHeader>
@@ -30,19 +42,21 @@ export const GmailAuth = () => {
 
       <CardContent className="h-36 flex flex-col items-center my-6">
         <div className="h-full w-full flex flex-col items-start justify-center space-y-4">
-          <Button
-            variant="outline"
-            type="button"
-            className="py-6 w-full space-x-2 cursor-pointer "
-          >
-            <GmailIcon />
-            <p className="text-base"> Connect Gmail</p>
-          </Button>
+          <a href={authUrl} className="w-full">
+            <Button
+              variant="outline"
+              type="button"
+              className="py-6 w-full space-x-1 cursor-pointer "
+            >
+              <GmailIcon />
+              <p className="text-sm md:text-base "> Connect Gmail</p>
+            </Button>
+          </a>
           <PhoneInput
             value={phone}
             onChange={setPhone}
             placeholder="Enter Whatsapp number"
-            className=" w-full"
+            className="w-full placeholder:xs"
           />
 
           <Button
@@ -50,7 +64,7 @@ export const GmailAuth = () => {
             type="button"
             className="w-full space-x-2 cursor-pointer bg-whatsapp text-white hover:bg-whatsapp-h hover:text-white"
           >
-            <p className="text-base"> Submit</p>
+            <p className="text-sm md:text-base"> Submit</p>
             <ArrowRight />
           </Button>
         </div>

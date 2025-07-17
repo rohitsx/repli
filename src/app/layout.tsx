@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: "Repli AI",
     images: [
       {
-        url: "https://repli.vercel.app/og-image.jpg",
+        url: "https://repli.vercel.app/favicon.svg",
         width: 1200,
         height: 630,
         alt: "Repli AI - Smart Email Management and Automation",
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     title: "Repli AI: Daily Email Summaries & Smart Automation",
     description:
       "Simplify email management with Repli AI’s daily summaries, WhatsApp email sending, and personalized AI automation for seamless communication.",
-    images: ["https://repli.vercel.app/og-image.jpg"],
+    images: ["https://repli.vercel.app/favicon.svg"],
     creator: "@RepliAI",
   },
 };
