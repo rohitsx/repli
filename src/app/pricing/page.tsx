@@ -1,4 +1,3 @@
-import { NavBar } from "@/components/navbar";
 import { PaymentCheckout } from "@/components/paymentCheckout";
 import { ArrowLeft } from "lucide-react";
 

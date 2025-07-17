@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import React from "react";
 import "./globals.css";
 
@@ -84,6 +85,7 @@ export default async function RootLayout({
         />
       </head>
       <body>
+        <GoogleAnalytics gaId="G-V7BFFVQL30" />
         <div>{children}</div>
       </body>
     </html>
