@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { signIn } from "@/lib/auth-client";
+import { baseSignIn } from "@/lib/auth-client";
 import { useState } from "react";
 import { Loader2Icon } from "lucide-react";
 import { GoogleIcon } from "./logo";
@@ -19,7 +19,7 @@ export function LoginForm({
 			type="button"
 			className="w-full cursor-pointer"
 			onClick={() => {
-				signIn();
+				baseSignIn();
 				setLoading(true);
 			}}
 		>

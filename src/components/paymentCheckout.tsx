@@ -30,7 +30,7 @@ export const PaymentCheckout = () => {
         </CardDescription>
       </CardHeader>
 
-      <CardContent className="space-y-3 text-md px-10">
+      <CardContent className="space-y-3 text-sm md:text-base px-10">
         <ul className="space-y-2 list-disc">
           {features.map((feature, i) => (
             <li key={i}>{feature}</li>
@@ -46,7 +46,7 @@ export const PaymentCheckout = () => {
 
       <CardFooter className="text-center flex-col space-y-2">
         <GetStartedBtn />
-        <p className="text-sm text-muted-foreground">
+        <p className="text-xs md:text-sm text-muted-foreground">
           Early users get exclusive discounts before price increases
         </p>
       </CardFooter>

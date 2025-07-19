@@ -3,7 +3,7 @@ import { ArrowLeft } from "lucide-react";
 
 export default function Page() {
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center w-full py-4">
       <div className="flax items-start w-sm md:w-md px-4 pt-8 md:pt-18">
         <a href="/" className="flex items-center gap-2 cursor-pointer ">
           <ArrowLeft size={20} />

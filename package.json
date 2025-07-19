@@ -4,8 +4,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
-		"ngrok": "ngrok http 192.168.1.3:3000 --domain=definite-locally-tarpon.ngrok-free.app",
+		"ngrok": "ngrok http 3000 --domain=definite-locally-tarpon.ngrok-free.app",
 		"dev:all": "concurrently \"npm run dev\" \"npm run ngrok\"",
+		"schema:base": "npx @better-auth/cli generate --config src/lib/auth/base.ts --output src/db/schema/base.ts --y",
+		"schema:gmail": "npx @better-auth/cli generate --config src/lib/auth/gmail.ts --output src/db/schema/gmail.ts --y",
+		"schema:all": "pnpm run schema:base && pnpm run schema:gmail",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"

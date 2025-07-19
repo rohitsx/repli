@@ -6,6 +6,7 @@
 @theme {
   --color-whatsapp: #1da851;
   --color-whatsapp-h: #21be5b;
+  --text-xxs: 400px;
 }
 
 @theme inline {

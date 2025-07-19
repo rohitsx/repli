@@ -5,6 +5,7 @@ export const Better_Auth_Secret = process.env.BETTER_AUTH_SECRET;
 export const Better_Auth_Url = process.env.BETTER_AUTH_URL;
 
 export const Domain = process.env.BETTER_AUTH_URL;
+export const Client_Domain = process.env.NEXT_PUBLIC_Domain;
 
 export const Dodo_Webhook_Key = process.env.DODO_WEBHOOK_KEY;
 
