@@ -1,5 +1,3 @@
-"use client";
-
 import {
 	Card,
 	CardContent,
@@ -8,16 +6,9 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Button } from "./ui/button";
-import { GmailIcon } from "./logo";
-import { PhoneInput } from "./ui/phone-input";
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
-import { gmailSignIn } from "@/lib/auth-client";
+import { GmailAuthCardContent } from "./cardContent";
 
 export const GmailAuth = () => {
-	const [phone, setPhone] = useState<string>("");
-
 	return (
 		<Card className="h-full text-left md:w-1/2 md:h-115">
 			<CardHeader>
@@ -32,30 +23,7 @@ export const GmailAuth = () => {
 
 			<CardContent className="h-36 flex flex-col items-center my-6">
 				<div className="h-full w-full flex flex-col items-start justify-center space-y-4">
-					<Button
-						variant="outline"
-						type="button"
-						className="py-6 w-full space-x-1 cursor-pointer "
-						onClick={() => gmailSignIn()}
-					>
-						<GmailIcon />
-						<p className="text-sm md:text-base "> Connect Gmail</p>
-					</Button>
-					<PhoneInput
-						value={phone}
-						onChange={setPhone}
-						placeholder="Enter Whatsapp number"
-						className="w-full placeholder:xs"
-					/>
-
-					<Button
-						variant="outline"
-						type="button"
-						className="w-full space-x-2 cursor-pointer bg-whatsapp text-white hover:bg-whatsapp-h hover:text-white"
-					>
-						<p className="text-sm md:text-base"> Submit</p>
-						<ArrowRight />
-					</Button>
+					<GmailAuthCardContent />
 				</div>
 			</CardContent>
 			<CardFooter>

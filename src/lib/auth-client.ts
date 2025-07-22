@@ -17,7 +17,7 @@ export const baseSignIn = async () =>
 export const gmailSignIn = async () =>
 	await gmailAuthClient.signIn.social({
 		provider: "google",
-		callbackURL: "/app",
+		callbackURL: "/bot-setup?auth=success",
 		scopes: [
 			"https://www.googleapis.com/auth/gmail.readonly",
 			"https://www.googleapis.com/auth/gmail.send",
