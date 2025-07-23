@@ -30,6 +30,12 @@ export const auth = betterAuth({
 				defaultValue: false,
 				input: false,
 			},
+			gmailAuth: {
+				type: "boolean",
+				required: false,
+				defaultValue: false,
+				input: false,
+			},
 		},
 	},
 	socialProviders: {

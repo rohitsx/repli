@@ -4,7 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { TryNow } from "./TryOrIcon";
 import { DialogTrigger } from "@radix-ui/react-dialog";
 import { useEffect, useState } from "react";
-import { baseAuthClient } from "@/lib/auth-client";
+import { baseAuthClient, gmailAuthClient } from "@/lib/auth-client";
+import { Dodo_Redirect_URL } from "@/lib/env";
 
 export const GetStartedBtn = () => {
 	const { data: session } = baseAuthClient.useSession();
@@ -37,10 +38,7 @@ export const GetStartedBtn = () => {
 
 	if (path === "/pricing") {
 		return (
-			<a
-				href="https://test.checkout.dodopayments.com/buy/pdt_UAjGz9R1DmhLZ9eYF0uqm?quantity=1&redirect_url=https://definite-locally-tarpon.ngrok-free.app%2Fbot-setup"
-				className={btnClass}
-			>
+			<a href={Dodo_Redirect_URL} className={btnClass}>
 				Get Started
 				<ArrowRight size={18} />
 			</a>

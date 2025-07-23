@@ -9,102 +9,98 @@ import { useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { allCountryCode } from "@/lib/countryCode";
 import { CountrySelector } from "../ui/country-selector";
+import { SuccessPopup } from "../successPopup";
+import { updateWhatsappNoFormate } from "@/lib/whatsappNoFormater";
+import { getUserGeo } from "@/lib/getUserGeo";
+import { useSessionStore } from "@/store/useSessionStore";
 
 export const GmailAuthCardContent = () => {
-  const [phone, setPhone] = useState("");
-  const [countryCode, setCountryCode] = useState<
-    keyof typeof allCountryCode | null
-  >(null);
-  const [dialCode, setDialCode] = useState("");
-  const [timeZone, setTimeZone] = useState("");
+	const [phone, setPhone] = useState("");
+	const [countryCode, setCountryCode] = useState<
+		keyof typeof allCountryCode | null
+	>(null);
+	const [dialCode, setDialCode] = useState("");
+	const [timeZone, setTimeZone] = useState("");
 
-  const searchParams = useSearchParams();
+	const searchParams = useSearchParams();
 
-  const authStatus = searchParams.get("auth");
+	const authStatus = searchParams.get("auth");
+	const [showSuccessPopup, setshowSuccessPopup] = useState(false);
 
-  useEffect(() => {
-    fetch("https://ipwho.is/")
-      .then((res) => res.json())
-      .then((data) => {
-        setCountryCode(data.country_code);
-        setTimeZone(data.timezone.id);
-      });
-  }, []);
+	useEffect(() => {
+		getUserGeo().then(({ country_code, timezone }) => {
+			setTimeZone(timezone.id);
+			setCountryCode(country_code);
+		});
+		fetch("https://ipwho.is/")
+			.then((res) => res.json())
+			.then((data) => {
+				setCountryCode(data.country_code);
+				setTimeZone(data.timezone.id);
+			});
+	}, []);
 
-  const handleSingin = () => {
-    gmailSignIn();
-  };
+	const handleSingin = () => {
+		gmailSignIn();
+	};
 
-  const formatPhoneNumber = (number: string): string => {
-    number = number.replace(/\D/g, "");
-    const match = number.match(/^(\d{0,3})(\d{0,3})(\d{0,4})$/);
+	useEffect(() => {
+		const input = updateWhatsappNoFormate({ input: "", dialCode });
+		setPhone(input);
+	}, [dialCode]);
 
-    if (!match) return number;
+	const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		let input = e.target.value;
+		input = updateWhatsappNoFormate({ input, dialCode });
+		setPhone(input);
+	};
 
-    return [match[1], match[2], match[3]].filter(Boolean).join(" ");
-  };
+	const handleSubmitForm = () => {
+		console.log({ phone, timeZone, countryCode });
+		setshowSuccessPopup(true);
+	};
 
-  const updatePhoneFormate = (input: string) => {
-    if (!input.startsWith(dialCode)) {
-      setPhone(dialCode + " " + formatPhoneNumber(input));
-    } else {
-      const numberPart = input.slice(dialCode.length).replace(/\D/g, "");
-      setPhone(dialCode + " " + formatPhoneNumber(numberPart));
-    }
-  };
+	return (
+		<>
+			{showSuccessPopup && <SuccessPopup />}
+			<Button
+				className="py-6 w-full space-x-1 bg-white text-black border cursor-pointer"
+				variant="outline"
+				onClickAction={handleSingin}
+			>
+				<GmailIcon />
+				<p className="text-sm md:text-base ">
+					{authStatus ? "Connected" : "Connect Gmail"}
+				</p>
+				{authStatus && <CheckIcon className="text-whatsapp" />}
+			</Button>
+			<div className="flex w-full">
+				<CountrySelector
+					setDialCode={setDialCode}
+					countryCode={countryCode as any}
+				/>
+				<div className="flex w-full">
+					<Input
+						type="text"
+						placeholder="Enter Whatsapp Number"
+						value={phone}
+						onChange={handleOnchange}
+						className="w-full placeholder:text-sm rounded-none rounded-r-md h-[50px]"
+						inputMode="numeric"
+					/>
+				</div>
+			</div>
 
-  useEffect(() => {
-    updatePhoneFormate("");
-  }, [dialCode]);
-
-  const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let input = e.target.value;
-    updatePhoneFormate(input);
-  };
-
-  const handleSubmitForm = () => {
-    console.log({ phone, timeZone, countryCode });
-  };
-
-  return (
-    <>
-      <Button
-        className={`py-6 w-full space-x-1 bg-white text-black border ${authStatus ? "cursor-not-allowed" : "cursor-pointer"}`}
-        variant="outline"
-        onClickAction={handleSingin}
-        disabled={authStatus}
-      >
-        <GmailIcon />
-        <p className="text-sm md:text-base ">
-          {authStatus ? "Connected" : "Connect Gmail"}
-        </p>
-        {authStatus && <CheckIcon className="text-whatsapp" />}
-      </Button>
-      <div className="flex w-full">
-        <CountrySelector
-          setDialCode={setDialCode}
-          countryCode={countryCode as any}
-        />
-        <div className="flex w-full">
-          <Input
-            type="text"
-            placeholder="Enter Whatsapp Number"
-            value={phone}
-            onChange={handleOnchange}
-            className="w-full placeholder:text-sm rounded-none rounded-r-md h-[50px]"
-            inputMode="numeric"
-          />
-        </div>
-      </div>
-
-      <Button
-        className="w-full space-x-2 cursor-pointer bg-whatsapp text-white hover:bg-whatsapp-h hover:text-white"
-        variant="outline"
-        onClickAction={handleSubmitForm}
-      >
-        <p className="text-sm md:text-base"> Submit</p>
-        <ArrowRight />
-      </Button>
-    </>
-  );
+			<Button
+				className="w-full space-x-2 bg-whatsapp text-white hover:bg-whatsapp-h hover:text-white cursor-pointer
+			"
+				variant="outline"
+				onClickAction={handleSubmitForm}
+				disabled={phone.length < 12 || !authStatus}
+			>
+				<p className="text-sm md:text-base"> Submit</p>
+				<ArrowRight />
+			</Button>
+		</>
+	);
 };

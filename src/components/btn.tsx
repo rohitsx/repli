@@ -32,7 +32,11 @@ export const Button: React.FC<ButtonProps> = ({
 
 	if (loading) return <LoadinBtn className={className} />;
 	return (
-		<UiButton className={className} onClick={handleClick} {...props}>
+		<UiButton
+			className={`${className} cursor-pointer`}
+			onClick={handleClick}
+			{...props}
+		>
 			{children}
 		</UiButton>
 	);
