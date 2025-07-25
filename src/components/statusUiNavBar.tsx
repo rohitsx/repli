@@ -21,7 +21,7 @@ export const StatusUi = () => {
 			</Link>
 		);
 
-	if (session?.user.paidUser) {
+	if (session?.user.paid_user) {
 		return (
 			<div className={`${statusClass} + bg-green-100 text-green-700`}>Pro</div>
 		);
