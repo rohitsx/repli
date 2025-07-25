@@ -22,70 +22,70 @@ export const auth = betterAuth({
     },
   },
   plugins: [nextCookies()],
-  // user: {
-  // additionalFields: {
-  //   paid_user: {
-  //     type: "boolean",
-  //     required: false,
-  //     defaultValue: false,
-  //     input: false,
-  //   },
-  //   gmail_auth: {
-  //     type: "boolean",
-  //     required: false,
-  //     defaultValue: false,
-  //     input: false,
-  //   },
-  //   is_whatsapp_no: {
-  //     type: "boolean",
-  //     required: false,
-  //     defaultValue: false,
-  //     input: false,
-  //   },
-  // gmail_auth_id: {
-  //   type: "string",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // gmail_auth_refresh_token: {
-  //   type: "string",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // gmail_auth_access_token: {
-  //   type: "string",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // time_zone: {
-  //   type: "string",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // country_code: {
-  //   type: "string",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // whatsapp_no: {
-  //   type: "number",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // subscription_date: {
-  //   type: "date",
-  //   required: false,
-  //   defaultValue: false,
-  //   input: false,
-  // },
-  // },
-  // },
+  user: {
+    additionalFields: {
+      paid_user: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      gmail_auth: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      is_whatsapp_no: {
+        type: "boolean",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      gmail_auth_id: {
+        type: "string",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      gmail_auth_refresh_token: {
+        type: "string",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      gmail_auth_access_token: {
+        type: "string",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      time_zone: {
+        type: "string",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      country_code: {
+        type: "string",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      whatsapp_no: {
+        type: "number",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+      subscription_date: {
+        type: "date",
+        required: false,
+        defaultValue: false,
+        input: false,
+      },
+    },
+  },
   socialProviders: {
     google: {
       prompt: "select_account",
