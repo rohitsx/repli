@@ -8,7 +8,9 @@ export const Better_Auth_Url = process.env.BETTER_AUTH_URL;
 export const Domain = process.env.BETTER_AUTH_URL;
 export const Client_Domain = process.env.NEXT_PUBLIC_Domain;
 
-export const Dodo_Webhook_Key = process.env.DODO_WEBHOOK_KEY;
+export const Dodo_Api_Key = process.env.DODO_PAYMENTS_API_KEY;
+export const Dodo_Webhook_Secret = process.env.DODO_WEBHOOK_SECRET;
+
 export const Dodo_Redirect_URL = process.env.NEXT_PUBLIC_DODO_REDIRECT_URL;
 
 export const Database_Url = process.env.DATABASE_URL;
