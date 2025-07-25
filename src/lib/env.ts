@@ -1,5 +1,6 @@
 export const Google_Client_Id = process.env.GOOGLE_CLIENT_ID;
 export const Google_Client_Secret = process.env.GOOGLE_CLIENT_SECRET;
+export const gamil_Auth_Redirect_Url = process.env.GAMIL_AUTH_REDIRECT_URL;
 
 export const Better_Auth_Secret = process.env.BETTER_AUTH_SECRET;
 export const Better_Auth_Url = process.env.BETTER_AUTH_URL;

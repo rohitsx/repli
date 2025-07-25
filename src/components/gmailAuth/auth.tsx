@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/card";
 import { GmailAuthCardContent } from "./cardContent";
 
-export const GmailAuth = () => {
+export const GmailAuth = async () => {
 	return (
 		<Card className="h-full text-left md:w-1/2 md:h-115">
 			<CardHeader>

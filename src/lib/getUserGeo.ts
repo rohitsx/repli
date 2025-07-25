@@ -1,6 +1,7 @@
 export const getUserGeo = async () => {
 	const res = await fetch("https://ipwho.is/");
 	const data = await res.json();
+	console.log(data);
 	const {
 		continent,
 		country_code,

@@ -12,8 +12,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { useEffect, useState } from "react";
-import { Button } from "./button";
+import { useCallback, useEffect, useState } from "react";
 import { ChevronsUpDownIcon } from "lucide-react";
 
 type CountryCodeType = keyof typeof allCountryCode;
@@ -28,29 +27,28 @@ export function CountrySelector({
   const [open, setOpen] = useState(false);
   const [flag, setFlag] = useState("▢");
 
-  const updateValue = ({ id }: { id: CountryCodeType }) => {
-    console.log(id);
-    if (!id) return;
-    console.log({ id });
+  const updateValue = useCallback(
+    ({ id }: { id: CountryCodeType }) => {
+      if (!id) return;
 
-    const value = allCountryCode[id];
+      const value = allCountryCode[id];
 
-    console.log({ countryCode, value });
-    setFlag(value.flag);
-    setDialCode(value.dial_code);
-    setOpen(false);
-  };
+      setFlag(value.flag);
+      setDialCode(value.dial_code);
+      setOpen(false);
+    },
+    [setDialCode],
+  );
 
   useEffect(() => {
     countryCode && updateValue({ id: countryCode });
-  }, [countryCode]);
+  }, [countryCode, updateValue]);
 
   return (
     <div className="flex space-x-2 items-center w-18">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild className="h-[50px]">
           <button
-            role="combobox"
             aria-expanded={open}
             className="w-full hover:bg-gray-100 shadow-xs cursor-pointer flex items-center justify-center gap-1 border border-r-0 rounded-none rounded-l-md"
           >

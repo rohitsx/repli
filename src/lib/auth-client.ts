@@ -1,25 +1,16 @@
 import { createAuthClient } from "better-auth/react";
 import { Client_Domain } from "./env";
+import { inferAdditionalFields } from "better-auth/client/plugins";
+import type { auth } from "@/lib/auth/auth";
 
-export const baseAuthClient = createAuthClient({
+export const authClient = createAuthClient({
+	plugins: [inferAdditionalFields<typeof auth>()],
 	baseURL: `${Client_Domain}/api/auth/base`,
 });
 
-export const gmailAuthClient = createAuthClient({
-	baseURL: `${Client_Domain}/api/auth/gmail`,
-});
-
-export const baseSignIn = async () =>
-	await baseAuthClient.signIn.social({
+export const signIn = async () =>
+	await authClient.signIn.social({
 		provider: "google",
 	});
 
-export const gmailSignIn = async () =>
-	await gmailAuthClient.signIn.social({
-		provider: "google",
-		callbackURL: "/bot-setup?auth=success",
-		scopes: [
-			"https://www.googleapis.com/auth/gmail.readonly",
-			"https://www.googleapis.com/auth/gmail.send",
-		],
-	});
+export type Session = typeof authClient.$Infer.Session;

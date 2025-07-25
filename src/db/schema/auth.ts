@@ -20,8 +20,16 @@ export const user = pgTable("user", {
   updatedAt: timestamp("updated_at")
     .$defaultFn(() => /* @__PURE__ */ new Date())
     .notNull(),
-  paidUser: boolean("paid_user"),
-  gmailAuth: boolean("gmail_auth"),
+  paid_user: boolean("paid_user"),
+  gmail_auth: boolean("gmail_auth"),
+  is_whatsapp_no: boolean("is_whatsapp_no"),
+  gmail_auth_id: text("gmail_auth_id"),
+  gmail_auth_refresh_token: text("gmail_auth_refresh_token"),
+  gmail_auth_access_token: text("gmail_auth_access_token"),
+  time_zone: text("time_zone"),
+  country_code: text("country_code"),
+  whatsapp_no: integer("whatsapp_no"),
+  subscription_date: timestamp("subscription_date"),
 });
 
 export const session = pgTable("session", {

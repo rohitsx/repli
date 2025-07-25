@@ -1,6 +1,6 @@
 "use client";
 
-import { baseAuthClient } from "@/lib/auth-client";
+import { authClient } from "@/lib/auth-client";
 import { useState, useEffect } from "react";
 import { Button } from "../btn";
 import { UserAvatar } from "./user-avatar";
@@ -9,7 +9,7 @@ import { Input } from "../ui/input";
 import { GmailIcon } from "../logo";
 
 export const AppContent = () => {
-	const { data: session } = baseAuthClient.useSession();
+	const { data: session } = authClient.useSession();
 	const [name, setName] = useState("");
 	const [whatsAppNo, setWhatsAppNo] = useState("");
 	const [emailSummaryTime, setEmailSummaryTime] = useState("");

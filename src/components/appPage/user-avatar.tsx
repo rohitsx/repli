@@ -1,6 +1,7 @@
 import { AvatarUi } from "@/components/avatar";
+import { Session } from "@/lib/auth-client";
 
-export const UserAvatar = ({ session }: { session: any }) => (
+export const UserAvatar = ({ session }: { session: Session | null }) => (
 	<div className="flex flex-col items-center gap-4">
 		<AvatarUi
 			img={session?.user.image || ""}

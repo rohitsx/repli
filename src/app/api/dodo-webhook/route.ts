@@ -2,7 +2,7 @@ import { Webhook } from "standardwebhooks";
 import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import { db } from "@/db/drizzle";
-import { user } from "@/db/schema/base";
+import { user } from "@/db/schema/auth";
 import { eq } from "drizzle-orm";
 
 const webhook = new Webhook(process.env.DODO_WEBHOOK_KEY!);
@@ -25,7 +25,7 @@ export async function POST(request: Request) {
 		const customer = payload.data.customer;
 		await db
 			.update(user)
-			.set({ paidUser: true })
+			.set({ paid_user: true })
 			.where(eq(user.email, customer.email));
 	}
 

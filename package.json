@@ -4,11 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
-		"ngrok": "ngrok http 3000 --domain=definite-locally-tarpon.ngrok-free.app",
-		"dev:all": "concurrently \"npm run dev\" \"npm run ngrok\"",
-		"schema:base": "npx @better-auth/cli generate --config src/lib/auth/base.ts --output src/db/schema/base.ts --y",
-		"schema:gmail": "npx @better-auth/cli generate --config src/lib/auth/gmail.ts --output src/db/schema/gmail.ts --y",
-		"schema:all": "pnpm run schema:base && pnpm run schema:gmail",
+		"schema": "npx @better-auth/cli generate --config src/lib/auth/auth.ts --output src/db/schema/auth.ts --y",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
@@ -28,8 +24,10 @@
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"cmdk": "^1.1.1",
+		"crypto": "^1.0.1",
 		"dodopayments": "^1.39.0",
 		"drizzle-orm": "^0.44.2",
+		"googleapis": "^153.0.0",
 		"lucide-react": "^0.525.0",
 		"next": "15.4.1",
 		"postgres": "^3.4.7",
