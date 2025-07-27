@@ -23,13 +23,6 @@ export const user = pgTable("user", {
   paid_user: boolean("paid_user"),
   gmail_auth: boolean("gmail_auth"),
   is_whatsapp_no: boolean("is_whatsapp_no"),
-  gmail_auth_id: text("gmail_auth_id"),
-  gmail_auth_refresh_token: text("gmail_auth_refresh_token"),
-  gmail_auth_access_token: text("gmail_auth_access_token"),
-  time_zone: text("time_zone"),
-  country_code: text("country_code"),
-  whatsapp_no: integer("whatsapp_no"),
-  subscription_date: timestamp("subscription_date"),
 });
 
 export const session = pgTable("session", {

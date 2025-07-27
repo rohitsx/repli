@@ -4,9 +4,10 @@ import { google } from "googleapis";
 interface AuthParams {
   email: string;
   id: string;
+  name: string;
 }
 
-export const getAuthUrl = ({ email, id }: AuthParams) => {
+export const getAuthUrl = ({ email, id, name }: AuthParams) => {
   if (!Google_Client_Id) throw new Error("Google client ID not found");
 
   const redirectUri = `${Domain}/api/auth/gmail`;
@@ -23,7 +24,7 @@ export const getAuthUrl = ({ email, id }: AuthParams) => {
     "https://www.googleapis.com/auth/userinfo.email",
   ];
 
-  const stateData = { email, id };
+  const stateData = { email, id, name };
   const state = Buffer.from(JSON.stringify(stateData)).toString("base64url");
 
   return oauth2Client.generateAuthUrl({

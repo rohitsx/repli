@@ -1,0 +1,1 @@
+ALTER TABLE "paid_user" ALTER COLUMN "summary_schedule_time" SET DATA TYPE text;

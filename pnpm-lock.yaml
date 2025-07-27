@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@dodopayments/nextjs':
+        specifier: ^0.1.7
+        version: 0.1.7(next@15.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.76)
       '@neondatabase/serverless':
         specifier: ^1.0.1
         version: 1.0.1
@@ -50,9 +53,15 @@ importers:
       cmdk:
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      countries-and-timezones:
+        specifier: ^3.8.0
+        version: 3.8.0
       crypto:
         specifier: ^1.0.1
         version: 1.0.1
+      date-fns:
+        specifier: ^4.1.0
+        version: 4.1.0
       dodopayments:
         specifier: ^1.39.0
         version: 1.42.0
@@ -133,6 +142,17 @@ packages:
 
   '@better-fetch/fetch@1.1.18':
     resolution: {integrity: sha512-rEFOE1MYIsBmoMJtQbl32PGHHXuG2hDxvEd7rUHE0vCBoFQVSDqaVs9hkZEtHCxRoY+CljXKFCOuJ8uxqw1LcA==}
+
+  '@dodopayments/core@0.1.13':
+    resolution: {integrity: sha512-pEexetvseSWZBf2p8zrnw7bmk/h+vHD0Jiu8AWfIcC5UIOnQne9Tdu/QnHFsfT5ywaBBzUi8Ryf1RRRTA+pCPA==}
+    peerDependencies:
+      zod: ^3.25.74
+
+  '@dodopayments/nextjs@0.1.7':
+    resolution: {integrity: sha512-uTe6LurtCtIXIhMs6euCJbatO3j3KdQwGOVCOOjaurdTH1+WO+sQvsWMgYiqr046tq0l8V21LZbhYPBy0sB6Fg==}
+    peerDependencies:
+      next: ^15.3.4
+      zod: ^3.25.73
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
@@ -1632,6 +1652,10 @@ packages:
   concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
 
+  countries-and-timezones@3.8.0:
+    resolution: {integrity: sha512-+Ze9h5f4dQpUwbzTm0DEkiPiZyim9VHV4/mSnT4zNYJnrnfwsKjAZPtnp7J5VzejCDgySs+2SSc6MDdCnD43GA==}
+    engines: {node: '>=8.x', npm: '>=5.x'}
+
   cross-spawn@7.0.6:
     resolution: {integrity: sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==}
     engines: {node: '>= 8'}
@@ -1661,6 +1685,9 @@ packages:
   data-view-byte-offset@1.0.1:
     resolution: {integrity: sha512-BS8PfmtDGnrgYdOonGZQdLZslWIeCGFP9tpan0hi1Co2Zr2NKADsvGYA8XxuG/4UWgJ6Cjtv+YJnB6MM69QGlQ==}
     engines: {node: '>= 0.4'}
+
+  date-fns@4.1.0:
+    resolution: {integrity: sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==}
 
   debug@3.2.7:
     resolution: {integrity: sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ==}
@@ -3131,6 +3158,22 @@ snapshots:
 
   '@better-fetch/fetch@1.1.18': {}
 
+  '@dodopayments/core@0.1.13(zod@3.25.76)':
+    dependencies:
+      dodopayments: 1.42.0
+      standardwebhooks: 1.0.0
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - encoding
+
+  '@dodopayments/nextjs@0.1.7(next@15.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(zod@3.25.76)':
+    dependencies:
+      '@dodopayments/core': 0.1.13(zod@3.25.76)
+      next: 15.4.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - encoding
+
   '@drizzle-team/brocli@0.10.2': {}
 
   '@emnapi/core@1.4.5':
@@ -4493,6 +4536,8 @@ snapshots:
 
   concat-map@0.0.1: {}
 
+  countries-and-timezones@3.8.0: {}
+
   cross-spawn@7.0.6:
     dependencies:
       path-key: 3.1.1
@@ -4524,6 +4569,8 @@ snapshots:
       call-bound: 1.0.4
       es-errors: 1.3.0
       is-data-view: 1.0.2
+
+  date-fns@4.1.0: {}
 
   debug@3.2.7:
     dependencies:

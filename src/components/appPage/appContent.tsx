@@ -1,87 +1,76 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import { useState, useEffect } from "react";
-import { Button } from "../btn";
+import { useEffect, useState } from "react";
 import { UserAvatar } from "./user-avatar";
-import { InputField } from "./input-field";
-import { Input } from "../ui/input";
-import { GmailIcon } from "../logo";
+import { updateSession } from "@/lib/session";
+import { useProfileStore } from "@/store/useProfileStore";
+import { UserPreferences } from "./userPreferences";
+import { SaveBtn } from "./saveBtn";
 
 export const AppContent = () => {
-	const { data: session } = authClient.useSession();
-	const [name, setName] = useState("");
-	const [whatsAppNo, setWhatsAppNo] = useState("");
-	const [emailSummaryTime, setEmailSummaryTime] = useState("");
+  const { data: session } = authClient.useSession();
+  const {
+    name,
+    setName,
+    whatsAppNo,
+    setWhatsAppNo,
+    emailSummaryTime,
+    setEmailSummaryTime,
+    setConnectedGmail,
+    timeZone,
+    setTimeZone,
+  } = useProfileStore();
+  const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		if (session) setName(session.user.name);
-	}, [session]);
+  useEffect(() => {
+    if (!session) return;
 
-	return (
-		<div className="p-6 rounded-r-2xl sm:rounded-2xl bg-white h-full flex flex-col items-center space-y-9 placeholder:text-xs">
-			<div className="pt-8 md:pt-4 space-y-4 w-64">
-				<UserAvatar session={session} />
-			</div>
+    const getPaidUser = async () => {
+      const res = await fetch(`/api/db/paid-user?email=${session.user.email}`);
+      const data = await res.json();
 
-			<div className="gap-3 w-full space-y-7">
-				<InputField id="name" label="Name">
-					<Input
-						id="name"
-						value={name}
-						onChange={(e) => setName(e.target.value)}
-						placeholder="Enter your name"
-						className="placeholder:text-xs"
-					/>
-				</InputField>
-				<InputField id="whatsapp" label="WhatsApp Number">
-					<Input
-						id="whatsapp"
-						value={whatsAppNo}
-						onChange={(e) => setWhatsAppNo(e.target.value)}
-						placeholder="Enter WhatsApp Number"
-						className="placeholder:text-xs"
-					/>
-				</InputField>
-				<InputField id="summaryTime" label="Email Summary Delivery Time">
-					<Input
-						id="summaryTime"
-						type="time"
-						value={emailSummaryTime}
-						onChange={(e) => setEmailSummaryTime(e.target.value)}
-						className="placeholder:text-xs"
-					/>
-				</InputField>
-				<div className="space-y-4">
-					<InputField id="email-account" label="Email Account">
-						<Input
-							id="email-account"
-							className="placeholder:text-xs"
-							value="rohitbindw@gmail.com"
-							readOnly
-						/>
-					</InputField>
-					<div className="flex gap-3 w-full ">
-						<Button className="flex-1 " variant="outline">
-							<GmailIcon />
-							Change Gmail
-						</Button>
-						<Button className="flex-1 " variant="outline">
-							<GmailIcon />
-							Disconnect Gmail
-						</Button>
-					</div>
-				</div>
-			</div>
+      const {
+        name,
+        gmail_auth_id,
+        whatsapp_no,
+        time_zone,
+        summary_schedule_time,
+      } = data;
 
-			<div className="w-full flex justify-end">
-				<Button
-					variant="outline"
-					className="w-full bg-whatsapp text-white hover:bg-whatsapp-h hover:text-white"
-				>
-					Save Changes
-				</Button>
-			</div>
-		</div>
-	);
+      setName(name);
+      setWhatsAppNo(whatsapp_no);
+      setEmailSummaryTime(summary_schedule_time);
+      setConnectedGmail(gmail_auth_id);
+      setTimeZone(time_zone);
+    };
+
+    getPaidUser();
+
+    const { paid_user, is_whatsapp_no, gmail_auth } = session.user;
+    if (!paid_user || !is_whatsapp_no || !gmail_auth) updateSession();
+  }, [session]);
+
+  const handleSave = async () => {
+    if (!session) return;
+
+    setLoading(true);
+
+    const res = await fetch(`/api/db/paid-user?email=${session.user.email}`, {
+      method: "POST",
+      body: JSON.stringify({ name, whatsAppNo, timeZone, emailSummaryTime }),
+    });
+
+    if (res.status !== 200) throw new Error("server error, try again");
+
+    setLoading(false);
+  };
+
+  return (
+    <div className="p-6 rounded-r-2xl sm:rounded-2xl bg-white h-full flex flex-col items-center space-y-9 placeholder:text-xs">
+      <UserAvatar session={session} />
+      <UserPreferences />
+      <SaveBtn loading={loading} handleSave={handleSave} />
+    </div>
+  );
 };
