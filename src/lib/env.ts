@@ -11,4 +11,4 @@ export const Client_Domain = process.env.NEXT_PUBLIC_Domain;
 export const Dodo_Webhook_Secret = process.env.DODO_WEBHOOK_SECRET;
 export const Dodo_Redirect_URL = process.env.NEXT_PUBLIC_DODO_REDIRECT_URL;
 
-export const Database_Url = process.env.DATABASE_URL;
+export const Database_Url = process.env.DATABASE_URL!;
